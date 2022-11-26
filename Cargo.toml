@@ -1,7 +1,7 @@
 [package]
-name = "async-pipeline"
+name = "async_pipeline_for_lucas"
 version = "0.0.2"
-edition = "2018"
+edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "Easy way to pipeline sync and async functions"
 
@@ -9,7 +9,7 @@ description = "Easy way to pipeline sync and async functions"
 
 [dependencies]
 log = "0.4"
-tokio = { version = "1.5", features = ["full"] }
+tokio = { version = "1.21.0", features = ["full"] }
 async-trait = "0.1.57"
 
 [dev-dependencies]
