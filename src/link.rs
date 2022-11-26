@@ -2,14 +2,14 @@ use crate::async_connect::AsyncConnect;
 use crate::connect::Connect;
 use std::future::Future;
 
-pub type Error = Box<dyn std::error::Error>;
+pub type Error = Box<dyn std::error::Error + Send + Sync>;
 
 pub trait Linkable {
     type OUT: Send + Sync;
     fn then_async<F, FUT, NXT>(self: Self, f: F) -> AsyncConnect<Self, F>
     where
         F: Fn(Self::OUT) -> FUT,
-        FUT: Future<Output = NXT> + Send + Sync,
+        FUT: Future<Output = NXT>,
         Self: Sized,
     {
         AsyncConnect {
@@ -21,7 +21,7 @@ pub trait Linkable {
     fn then_async_result<F, FUT, NXT>(self: Self, f: F) -> AsyncConnect<Self, ErrorFuc<F>>
     where
         F: Fn(Self::OUT) -> FUT,
-        FUT: Future<Output = Result<NXT, Error>> + Send + Sync,
+        FUT: Future<Output = Result<NXT, Error>>,
         Self: Sized,
     {
         AsyncConnect {
