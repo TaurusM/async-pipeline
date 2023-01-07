@@ -1,5 +1,6 @@
 use crate::link::{Error, ErrorFuc, Linkable, Pipeline};
 use crate::Start;
+use anyhow::Result;
 
 pub struct Connect<P, F> {
     pub(crate) prev: P,

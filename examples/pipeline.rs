@@ -1,6 +1,6 @@
-use async_pipeline_for_lucas::begin;
+use anyhow::Result;
 use async_pipeline_for_lucas::link::{Linkable, Pipeline};
-use async_pipeline_for_lucas::Error;
+use async_pipeline_for_lucas::{begin, Error};
 use std::time::Duration;
 use tokio::time::sleep;
 

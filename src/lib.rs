@@ -6,7 +6,7 @@ pub mod connect;
 pub mod link;
 mod test;
 
-pub type Error = link::Error;
+pub type Error = anyhow::Error;
 
 pub fn begin<T>() -> Start<T> {
     return Start {

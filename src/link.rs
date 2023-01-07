@@ -1,5 +1,6 @@
 use crate::async_connect::AsyncConnect;
 use crate::connect::Connect;
+use anyhow::Result;
 use std::future::Future;
 
 pub type Error = anyhow::Error;
