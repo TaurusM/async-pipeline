@@ -2,7 +2,7 @@ use crate::async_connect::AsyncConnect;
 use crate::connect::Connect;
 use std::future::Future;
 
-pub type Error = Box<dyn std::error::Error + Send + Sync>;
+pub type Error = anyhow::Error;
 
 pub trait Linkable {
     type OUT: Send + Sync;

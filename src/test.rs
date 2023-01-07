@@ -24,7 +24,7 @@ mod tests {
             .then_async_result(|x| async move {
                 match x % 3 {
                     0 => Ok(x),
-                    1 => Err("something wrong".into()),
+                    1 => Err(anyhow::anyhow!("something wrong")),
                     _ => {
                         panic!("no way")
                     }

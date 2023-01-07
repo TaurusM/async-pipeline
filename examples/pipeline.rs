@@ -25,7 +25,7 @@ async fn main() {
         .then_result(from_str)
         .then_async_result(|i| async move {
             match i % 7 {
-                0 => Err("inject error".into()),
+                0 => Err(anyhow::anyhow!("inject error")),
                 _ => Ok(i),
             }
         })
