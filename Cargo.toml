@@ -1,6 +1,6 @@
 [package]
 name = "async_pipeline_for_lucas"
-version = "0.0.4"
+version = "0.0.5"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "Easy way to pipeline sync and async functions"
@@ -11,7 +11,6 @@ description = "Easy way to pipeline sync and async functions"
 log = "0.4"
 tokio = { version = "1.21.0", features = ["full"] }
 async-trait = "0.1.57"
-anyhow = "1.0.68"
 
 [dev-dependencies]
 serde = { version = "1.0", features = ["derive"] }

@@ -1,12 +1,10 @@
-use std::marker::PhantomData;
 use crate::link::Linkable;
+use std::marker::PhantomData;
 
 pub mod async_connect;
 pub mod connect;
 pub mod link;
 mod test;
-
-pub type Error = anyhow::Error;
 
 pub fn begin<T>() -> Start<T> {
     return Start {

@@ -1,6 +1,5 @@
-use anyhow::Result;
-use async_pipeline_for_lucas::link::{Linkable, Pipeline};
-use async_pipeline_for_lucas::{begin, Error};
+use async_pipeline_for_lucas::begin;
+use async_pipeline_for_lucas::link::{Error, Linkable, Pipeline};
 use std::time::Duration;
 use tokio::time::sleep;
 
@@ -25,7 +24,7 @@ async fn main() {
         .then_result(from_str)
         .then_async_result(|i| async move {
             match i % 7 {
-                0 => Err(anyhow::anyhow!("inject error")),
+                0 => Err("something wrong".into()),
                 _ => Ok(i),
             }
         })

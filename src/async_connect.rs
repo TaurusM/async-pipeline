@@ -1,10 +1,9 @@
 use crate::link::{Error, ErrorFuc, Linkable, Pipeline};
 use crate::Start;
 use std::future::Future;
-use anyhow::Result;
 
-pub struct AsyncConnect<P, F> {
-    pub(crate) prev: P,
+pub struct AsyncConnect<P: ?Sized, F> {
+    pub(crate) prev: Box<P>,
     pub(crate) next: F,
 }
 

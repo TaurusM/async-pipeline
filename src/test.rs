@@ -3,9 +3,36 @@ mod tests {
     use crate::begin;
     use crate::link::{Linkable, Pipeline};
     use serde::{Deserialize, Serialize};
+    use std::fmt::Display;
     use std::fs;
     use std::time::Duration;
     use tokio::time::sleep;
+
+    #[derive(Debug, Clone)]
+    pub struct TestError {
+        pub code: String,
+        pub message: Option<String>,
+    }
+
+    impl Display for TestError {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "response error in app",)
+        }
+    }
+
+    impl std::error::Error for TestError {
+        fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+            Some(self)
+        }
+
+        fn description(&self) -> &str {
+            "description() is deprecated; use Display"
+        }
+
+        fn cause(&self) -> Option<&dyn std::error::Error> {
+            self.source()
+        }
+    }
 
     #[tokio::test]
     async fn test_pipeline() {
@@ -24,7 +51,7 @@ mod tests {
             .then_async_result(|x| async move {
                 match x % 3 {
                     0 => Ok(x),
-                    1 => Err(anyhow::anyhow!("something wrong")),
+                    1 => Err("something wrong".into()),
                     _ => {
                         panic!("no way")
                     }
